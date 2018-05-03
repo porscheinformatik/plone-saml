@@ -1,0 +1,46 @@
+<configure
+    i18n_domain="poi.pas.saml2"
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:plone="http://namespaces.plone.org/plone">
+
+
+<!-- @@cmslogin-dealer -->
+  <browser:page
+      class=".loginview.DealerLoginView"
+      for="*"
+      name="cmslogin-dealer"
+      permission="zope2.View"
+      template="templates/loginview.pt"
+      layer="poi.pas.saml2.interfaces.IPoiPasSaml2Layer"
+  />
+  <!-- @@cmslogin-country -->
+  <!-- TODO remove all this from the plugin and let client code define their naming . . .  -->
+  <browser:page
+      class=".loginview.CountryLoginView"
+      for="*"
+      name="cmslogin-country"
+      permission="zope2.View"
+      layer="poi.pas.saml2.interfaces.IPoiPasSaml2Layer"
+  />
+
+  <!-- Testlogin -->
+  <!--browser:page
+      class=".mockview.MockLoginView"
+      for="*"
+      name="saml_mock_login"
+      permission="zope2.View"
+      layer="poi.pas.saml2.interfaces.IPoiPasSaml2Layer"
+  /-->
+
+  <!-- Test Gruppenlist -->
+  <browser:page
+      class=".virtualgroupview.Saml2GroupView"
+      for="*"
+      name="virtualgroup_test"
+      permission="zope2.View"
+      template="templates/virtualgroups.pt"
+  />
+
+
+</configure>

@@ -1,0 +1,43 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2017-03-31 10:57+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0\n"
+"Language-Code: en\n"
+"Language-Name: English\n"
+"Preferred-Encodings: utf-8 latin1\n"
+"Domain: poi.templates\n"
+
+#. Default: "Sehr geehrte Damen und Herren!"
+#: ../browser\templates\loginview.pt:14
+msgid "poi.login.greeting"
+msgstr ""
+
+#. Default: "Sie haben noch keine Autohaus Website bei uns registriert."
+#: ../browser\templates\loginview.pt:15
+msgid "poi.login.line1"
+msgstr ""
+
+#. Default: "Wenn Sie Interesse haben, wenden Sie sich bitte telefonisch an die Abteilung"
+#: ../browser\templates\loginview.pt:16
+msgid "poi.login.line2"
+msgstr ""
+
+#. Default: "<b>Digital Business</b>, unter der Nummer <b>+43 662 4681 2781</b>."
+#: ../browser\templates\loginview.pt:17
+msgid "poi.login.line3"
+msgstr ""
+
+#. Default: "Händlerwebsite-Wartung"
+#: ../browser\templates\loginview.pt:13
+msgid "poi.login.title"
+msgstr ""

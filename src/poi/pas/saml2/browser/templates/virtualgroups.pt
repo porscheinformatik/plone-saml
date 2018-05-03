@@ -1,0 +1,131 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="poi.pas.saml2">
+<body>
+
+<metal:main fill-slot="main" tal:define="countryurl context/id">
+    <span tal:replace="structure context/@@authenticator/authenticator"/>
+
+
+    <h1 class="documentFirstHeading">
+        <q>POI Testseite Virtuelle Gruppen </q>
+    </h1>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12" tal:condition="not: portal_state/anonymous">
+            <div class="box">
+                <input type="text" class="poi-input" id="usrname" value="-" name="usrname" style="height: 30px;">
+                <input name="form.buttons.get" class="submit-widget button-field context" id="form-buttons-get"
+                       type="submit" onClick="GetUserName()" value="Search User FirstName">
+                <span style="width:20px;">&nbsp;<br><br></span>
+                <input type="text"  class="poi-input" id="hdlid" value="-" name="hdlid" style="height: 30px;">
+                <input name="form.buttons.get" class="submit-widget button-field context" id="form-buttons-get"
+                       type="submit" onClick="GetDealerUser()" value="Get all User from Dealer">
+                <span style="height:10px;">&nbsp;<br><br></span><br>
+                <input type="text"  class="poi-input" id="userid" value="-" name="userid" style="height: 30px;">
+                <input name="form.buttons.save" class="submit-widget button-field context" id="form-buttons-save"
+                       type="submit" onClick="GetSingleUser()" value="Get single User Data">
+
+                <input type="hidden" id="country" value="${countryurl}" name="country">
+            </div>
+        </div>
+    </div>
+    <div class="row">&nbsp;</div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12">
+            <div class="content-contentchooser" tal:condition="not: portal_state/anonymous"
+                 tal:replace="structure view/showgroupform"/>
+        </div>
+
+        <form class="pat-formautofocus" id="login_form" action="login_form" method="post">
+            <div id="login-form">
+                <input name="came_from" type="hidden" value="">
+                <input name="next" type="hidden">
+                <input name="ajax_load" type="hidden">
+                <input name="ajax_include_head" type="hidden">
+                <input name="target" type="hidden">
+                <input name="mail_password_url" type="hidden">
+                <input name="join_url" type="hidden">
+                <input name="form.submitted" type="hidden" value="1">
+                <input name="js_enabled" id="js_enabled" type="hidden" value="0">
+                <input name="cookies_enabled" id="cookies_enabled" type="hidden" value="">
+                <input name="login_name" id="login_name" type="hidden" value="">
+                <input name="pwd_empty" id="pwd_empty" type="hidden" value="0">
+                <div class="field">
+                    <label for="__ac_name">Benutzername</label>
+                    <input name="__ac_name" id="__ac_name" type="text" size="15" value="">
+                </div>
+                <div class="field">
+                    <label for="__ac_password">Passwort</label>
+                    <input name="__ac_password" id="__ac_password" type="password" size="15">
+                </div>
+                <div class="formControls">
+                    <input name="submit" class="context" type="submit" value="Anmelden">
+                </div>
+            </div>
+        </form>
+
+
+
+    </div>
+    <br/>
+    <br/>
+    <script>
+var country = document.getElementById('country').value;
+function GetSingleUser() {
+  var uid = document.getElementById('userid').value;
+  var link = location.protocol+'//'+location.host+ '/'+country+'/@@virtualgroup_test?userid='+uid;
+  top.location.href = link;
+}
+function GetDealerUser() {
+  var uid = document.getElementById('hdlid').value;
+  var link = location.protocol+'//'+location.host+'/Dealer/'+country+'/@@virtualgroup_test?hdlid='+uid;
+  top.location.href = link;
+}
+function GetUserName() {
+  var uid = document.getElementById('usrname').value;
+  var link = location.protocol+'//'+location.host+'/Dealer/'+country+'/@@virtualgroup_test?usrname='+uid;
+  top.location.href = link;
+}
+
+function SetLogin(usrid,secret,hdlnr,Rolle) {
+  document.getElementById('__ac_name').value = usrid;
+  document.getElementById('__ac_password').value = secret;
+  if (country=='at') prefix = 'a';
+  else prefix = country;
+  Redir = prefix+hdlnr;
+  if (Rolle == 'M' || Rolle == 'E') var link = location.protocol+'//'+location.host+'/Dealer/'+country+'/login_form';
+  else var link = location.protocol+'//'+location.host+'/Dealer/'+country+'/'+Redir+'/login_form';
+  document.getElementById('login_form').action = link;
+}
+
+    </script>
+    <style>
+#portal-column-two {display:none;}
+.box {border: 1px solid #3A424E; padding:5px;}
+.poi-input
+{
+    border:solid 1px #393F4C;
+    background-color:#FFFFFF;
+}
+.poi-input:focus
+{
+    box-shadow:0 0 3px 0 black;
+    outline:none;
+    border:solid 1px #272B35;
+}
+    </style>
+</metal:main>
+
+<footer id="portal-footer-wrapper" i18n:domain="poi.pas.saml2">
+    <!-- Insert POI Wartungs-Functions -->
+
+</footer>
+
+</body>
+</html>
+
+

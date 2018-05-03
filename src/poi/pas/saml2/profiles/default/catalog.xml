@@ -1,0 +1,10 @@
+<?xml version="1.0"?>
+<object
+    meta_type="Plone Catalog Tool"
+    name="portal_catalog">
+  <index
+      meta_type="FieldIndex"
+      name="group_enabled">
+    <indexed_attr value="group_enabled" />
+  </index>
+</object>

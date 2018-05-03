@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layers>
+  <layer
+      name="poi.pas.saml2"
+      interface="poi.pas.saml2.interfaces.IPoiPasSaml2Layer"
+      />
+</layers>

@@ -1,0 +1,115 @@
+Metadata-Version: 1.1
+Name: poi.pas.saml2
+Version: 0.2.1
+Summary: PAS Plugin connecting Partner Net SAML2 with Plone
+Home-page: https://pypi.python.org/pypi/poi.pas.saml2
+Author: Jens W. Klein
+Author-email: jk@kleinundpartner.at
+License: GPL version 2
+Description: .. This README is meant for consumption by humans and pypi. Pypi can render rst files so please do not use Sphinx features.
+           If you want to learn more about writing documentation, please check out: http://docs.plone.org/about/documentation_styleguide.html
+           This text does not appear on pypi or github. It is a comment.
+        
+        ==============================================================================
+        poi.pas.saml2
+        ==============================================================================
+        
+        Provides Partner Net SAML2 users as Plone Users.
+        
+        Features
+        --------
+        
+        Group:
+        
+        - provides behavior ``poipas.group`` to mark some content as a group
+        - provides pas plugin to expose the group marked content as a group
+        
+        User:
+        
+        - accept incoming SAML2 request
+        - start challenge request - response for saml request
+        - accept saml2 response
+        - remeber user and login in using authtkt
+        - expose saml2 attributes as propertysheet
+        - add user to group by a given saml2 property
+        
+        
+        
+        Installation
+        ------------
+        
+        Install poi.pas.saml2 by adding it to your buildout::
+        
+            [buildout]
+        
+            ...
+        
+            eggs =
+                poi.pas.saml2
+        
+        
+        and then running ``bin/buildout``
+        
+        
+        Support
+        -------
+        
+        If you are having issues, please let us know.
+        Send an e-mail to support@kleinundpartner.at
+        
+        
+        License
+        -------
+        
+        The project is licensed under the GPLv2.
+        
+        
+        Contributors
+        ============
+        
+        - Jens W. Klein, jk@kleinundpartner.at
+        
+        
+        Changelog
+        =========
+        
+        
+        17.7.4 (unreleased)
+        -------------------
+        
+        - Nothing changed yet.
+        
+        
+        17.7.3 (2017-07-27)
+        -------------------
+        
+        - Neue Loginview PartnerNet Korrekture audience.
+        
+        
+        17.7.2 (2017-07-20)
+        -------------------
+        
+        - Neue Loginview PartnerNet Zertifikat.
+        
+        
+        17.7.1 (2017-07-20)
+        -------------------
+        
+        - Nothing changed yet.
+        
+        
+        17.7.1b1 (2017-07-19)
+        ---------------------
+        
+        - Initial release.
+          [jensens]
+        
+Keywords: Python Plone Authentication
+Platform: UNKNOWN
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Plone
+Classifier: Framework :: Plone :: 5.0
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Operating System :: OS Independent
+Classifier: License :: OSI Approved :: GNU General Public License v2 (GPLv2)

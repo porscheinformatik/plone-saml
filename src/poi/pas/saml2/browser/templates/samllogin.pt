@@ -1,0 +1,42 @@
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      i18n:domain="poi.pas.saml2">
+<body>
+
+<metal:main fill-slot="main">
+
+
+  <h1 class="documentFirstHeading"
+      i18n:translate="heading_currently_assigned_shares">
+      <q>Testseite für Saml2 XML Eingabe </q>
+  </h1>
+
+<div class="row">
+          <div class="col-xs-12 col-sm-12">
+
+<fieldset class="checked autotoc-section active" id="fieldset-default">
+<div class="tablecontent">
+  <div class="content-contentchooser"
+        tal:replace="structure view/showsamlform" />
+<textarea name="form.widgets.content_css" class="textarea-widget list-field" id="form-widgets-content_css"></textarea>
+  
+</div>
+</fieldset>
+</div>
+</div>
+</metal:main>
+
+
+<footer id="portal-footer-wrapper" i18n:domain="poi.templates"> 
+<!-- Insert POI Wartungs-Functions -->
+
+</footer>
+
+</body>
+</html>
+
+

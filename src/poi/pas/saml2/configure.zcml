@@ -1,0 +1,44 @@
+<configure
+    i18n_domain="poi.pas.saml2"
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:five="http://namespaces.zope.org/five"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    xmlns:i18n="http://namespaces.zope.org/i18n"
+    xmlns:plone="http://namespaces.plone.org/plone">
+  <five:registerPackage
+      initialize=".initialize"
+      package="."
+  />
+  <i18n:registerTranslations directory="locales" />
+  <includeDependencies package="." />
+  <include package=".browser" />
+  <genericsetup:registerProfile
+      description="Installs the poi.pas.saml2 add-on."
+      directory="profiles/default"
+      name="default"
+      post_handler=".setuphandlers.post_install"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="poi.pas.saml2"
+  />
+  <genericsetup:registerProfile
+      description="Uninstalls the poi.pas.saml2 add-on."
+      directory="profiles/uninstall"
+      name="uninstall"
+      post_handler=".setuphandlers.uninstall"
+      provides="Products.GenericSetup.interfaces.EXTENSION"
+      title="poi.pas.saml2 (uninstall)"
+  />
+  <utility
+      factory=".setuphandlers.HiddenProfiles"
+      name="poi.pas.saml2-hiddenprofiles"
+  />
+  <plone:behavior
+      name="poipas.group"
+      provides=".behaviors.IGroup"
+      title="PAS Group"
+  />
+  <adapter
+      factory=".behaviors.group_enabled_indexer"
+      name="group_enabled"
+  />
+</configure>

@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html
+    i18n:domain="poi.templates"
+    lang="en"
+    xml:lang="en"
+    metal:use-macro="context/main_template/macros/master"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+    xmlns:metal="http://xml.zope.org/namespaces/metal"
+    xmlns:tal="http://xml.zope.org/namespaces/tal">
+  <body>
+    <metal:fill metal:fill-slot="main" tal:define="data python:view.process">
+      <h2><tal:block tal:content="structure data/title | nothing" /> ${data/bnr | nothing}</h2>
+      <div tal:content="structure data/greeting | nothing" />
+      <div tal:content="structure data/line1 | nothing" />
+      <div tal:content="structure data/line2 | nothing" />
+      <div tal:content="structure data/line3 | nothing" />
+    </metal:fill>
+  </body>
+</html>
