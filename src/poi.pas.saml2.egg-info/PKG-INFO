@@ -1,6 +1,6 @@
 Metadata-Version: 1.1
 Name: poi.pas.saml2
-Version: 0.2.1
+Version: 0.3.0
 Summary: PAS Plugin connecting Partner Net SAML2 with Plone
 Home-page: https://pypi.python.org/pypi/poi.pas.saml2
 Author: Jens W. Klein
@@ -68,6 +68,7 @@ Description: .. This README is meant for consumption by humans and pypi. Pypi ca
         ============
         
         - Jens W. Klein, jk@kleinundpartner.at
+        - Axel Gschaider, axel.gschaider@posteo.de
         
         
         Changelog
