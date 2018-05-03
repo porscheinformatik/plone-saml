@@ -1,0 +1,5 @@
+graft src/poi
+graft docs
+include *.rst
+global-exclude *.pyc
+global-exclude *.sh
