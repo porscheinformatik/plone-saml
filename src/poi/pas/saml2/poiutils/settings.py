@@ -44,7 +44,20 @@ class SettingsFactory(object):
 
         meta_url = issuer + '/metadata'
         xml_response = requests.get(meta_url, timeout=5)
-        return xml_response.text
+        metadata = xml_response.text
+
+        return self.manipulate_metadata(metadata, response)
+
+    def manipulate_metadata(self, metadata, samlp_response):
+        """
+        Override to manipulate and fix the metadata before it is returned by get_metadata().
+
+        :param metadata: the metadata received from the issuer of the samlp response
+        :param samlp_response: the samlp response that was recieved using the xmlstr passed to
+                               get_metadata()
+        :return: the manipulated metadata
+        """
+        return metadata
 
     def get_entityid(self, xmlstr):
         # Problem 1: wie es aussieht bekommen wir bei Prod PartnerNet als Audience
