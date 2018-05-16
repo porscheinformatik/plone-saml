@@ -9,6 +9,10 @@ DEFAULT_ID_USERS = 'poisaml2users'
 DEFAULT_ID_GROUPS = 'poisaml2groups'
 _GROUP_ATTRIBUTE = 'group'
 
+# this "role" is a hack so user plugins can add the user to groups that are not based on some SAML2
+# roles
+SAML2_DEFAULT_ROLE = "saml2_default_role"
+
 class IPoiUsersPlugin(Interface):
     """Plugin to connect Partner Net SAML2 to Plone - Users"""
 

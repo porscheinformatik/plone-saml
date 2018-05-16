@@ -20,7 +20,7 @@ import logging
 import os
 import uuid
 import pdb
-from poi.pas.saml2.interfaces import _GROUP_ATTRIBUTE
+from poi.pas.saml2.interfaces import _GROUP_ATTRIBUTE, SAML2_DEFAULT_ROLE
 
 
 logger = logging.getLogger(__name__)
@@ -38,12 +38,19 @@ def manage_addPoiUsersPlugin(context, id, title='', RESPONSE=None, **kw):
         RESPONSE.redirect('manage_workspace')
 
 
+
 manage_addPoiUsersPluginForm = PageTemplateFile(
     'users_add_plugin.pt',
     globals(),
     __name__='addPoiUsersPlugin'
 )
 
+def _samlroles(userdata):
+    r = [SAML2_DEFAULT_ROLE]
+
+    r.extend(userdata['Person.Roles'])
+
+    return r
 
 @implementer(
     IPoiUsersPlugin,
@@ -104,7 +111,7 @@ class PoiUsersPlugin(BasePlugin):
         logger.info('add groups to user:')
         #for samlrole in userdata['Person.Roles']:
         #    if samlrole in SAMLROLE_TO_GROUP:
-        for samlrole in userdata['Person.Roles']:
+        for samlrole in _samlroles(userdata):
             groups = manager.samlrole2groups(samlrole, portal, userdata)
             if groups:
                 identity[_GROUP_ATTRIBUTE].update(groups)
