@@ -13,8 +13,11 @@ eggs/
 htmlcov/
 include/
 lib/
+lib64/
 local/
 parts/
+dist
+downloads
 src/*
 test.plone_addon/
 var/
@@ -36,3 +39,4 @@ report.html
 !.travis.yml
 !src/poi
 share/
+src/*.egg-info
