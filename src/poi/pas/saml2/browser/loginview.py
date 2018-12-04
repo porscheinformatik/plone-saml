@@ -102,7 +102,7 @@ class DealerLoginView(BrowserView):
 # -------------------------------------------------
 # LOGIN Country ()
 # -------------------------------------------------
-class CountryLoginView(DealerLoginView):
+class LoginView(DealerLoginView):
     def __call__(self):
         saml = self._saml()
         if saml['error']:
