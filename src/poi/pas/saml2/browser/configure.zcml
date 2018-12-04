@@ -42,5 +42,12 @@
       template="templates/virtualgroups.pt"
   />
 
+  <browser:page
+          class=".group_utils.CurrentUserInspector"
+          for="*"
+          name="@inspect_user"
+          permission="zope2.View"
+  />
+
 
 </configure>

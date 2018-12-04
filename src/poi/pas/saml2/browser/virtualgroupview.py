@@ -30,9 +30,6 @@ logger = logging.getLogger("Plone")
 class Saml2GroupView(BrowserView):
     def showgroupform(self):
 
-        import pdb
-        pdb.set_trace()
-
         #print '===>',self.Countrysel
         userid = ''
         dlrid = ''

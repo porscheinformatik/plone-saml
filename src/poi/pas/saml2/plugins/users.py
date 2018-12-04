@@ -307,5 +307,11 @@ class PoiUsersPlugin(BasePlugin):
         valid_groups = existing_groups & set(groupnames)
         return tuple(sorted(valid_groups))
 
+    def purge_userdata(self):
+        old = self._userdata_by_userid
+        self._userdata_by_userid = OOBTree()
+
+        return old
+
 
 InitializeClass(PoiUsersPlugin)
