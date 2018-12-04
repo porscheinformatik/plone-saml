@@ -1,27 +1,26 @@
 # -*- coding: utf-8 -*-
-from AccessControl import ClassSecurityInfo
-from App.class_init import InitializeClass
-from BTrees.OOBTree import OOBTree
-from operator import itemgetter
-from persistent.dict import PersistentDict
-from plone import api
-from Products.CMFPlone.utils import safe_unicode
-from poi.pas.saml2 import utils
-from poi.pas.saml2.interfaces import IPoiUsersPlugin
-from Products.PageTemplates.PageTemplateFile import PageTemplateFile
-from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
-from Products.PluggableAuthService.interfaces.authservice import _noroles
-from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
-from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
-from zope.interface import implementer
-from poi.pas.saml2.utils import get_saml2rightsManager
-
 import logging
 import os
 import uuid
-import pdb
-from poi.pas.saml2.interfaces import _GROUP_ATTRIBUTE, SAML2_DEFAULT_ROLE
+from AccessControl import ClassSecurityInfo
+from operator import itemgetter
 
+from App.class_init import InitializeClass
+from BTrees.OOBTree import OOBTree
+from Products.CMFPlone.utils import safe_unicode
+from Products.PageTemplates.PageTemplateFile import PageTemplateFile
+from Products.PluggableAuthService.UserPropertySheet import UserPropertySheet
+from Products.PluggableAuthService.interfaces import plugins as pas_interfaces
+from Products.PluggableAuthService.interfaces.authservice import _noroles
+from Products.PluggableAuthService.plugins.BasePlugin import BasePlugin
+from persistent.dict import PersistentDict
+from poi.pas.saml2 import utils
+from poi.pas.saml2.interfaces import IPoiUsersPlugin
+from poi.pas.saml2.interfaces import _GROUP_ATTRIBUTE, SAML2_DEFAULT_ROLE
+from poi.pas.saml2.utils import get_saml2rightsManager
+from zope.interface import implementer
+
+from plone import api
 
 logger = logging.getLogger(__name__)
 tpl_dir = os.path.join(os.path.dirname(__file__), 'browser')
@@ -38,12 +37,12 @@ def manage_addPoiUsersPlugin(context, id, title='', RESPONSE=None, **kw):
         RESPONSE.redirect('manage_workspace')
 
 
-
 manage_addPoiUsersPluginForm = PageTemplateFile(
     'users_add_plugin.pt',
     globals(),
     __name__='addPoiUsersPlugin'
 )
+
 
 def _samlroles(userdata):
     r = [SAML2_DEFAULT_ROLE]
@@ -51,6 +50,7 @@ def _samlroles(userdata):
     r.extend(userdata['Person.Roles'])
 
     return r
+
 
 @implementer(
     IPoiUsersPlugin,
@@ -85,9 +85,9 @@ class PoiUsersPlugin(BasePlugin):
     def _propertysheet(self, userid, identity):
         pdata = {
             'fullname': (
-                identity['Person.FirstName'][0] +
-                ' ' +
-                identity['Person.LastName'][0]
+                    identity['Person.FirstName'][0] +
+                    ' ' +
+                    identity['Person.LastName'][0]
             ),
             'email': identity['Person.Email'][0]
         }
@@ -109,7 +109,7 @@ class PoiUsersPlugin(BasePlugin):
         logger.info(userdata)
         identity[_GROUP_ATTRIBUTE] = set()
         logger.info('add groups to user:')
-        #for samlrole in userdata['Person.Roles']:
+        # for samlrole in userdata['Person.Roles']:
         #    if samlrole in SAMLROLE_TO_GROUP:
         for samlrole in _samlroles(userdata):
             groups = manager.samlrole2groups(samlrole, portal, userdata)
@@ -184,6 +184,7 @@ class PoiUsersPlugin(BasePlugin):
 
         ret = self._propertysheet(user, identity)
         return ret
+
     # ##
     # pas_interfaces.plugins.IUserEnumaration
 
@@ -241,9 +242,9 @@ class PoiUsersPlugin(BasePlugin):
         # shortcut for exact match of login/id
         identity = None
         if (
-            exact_match and
-            search_id and
-            search_id in self._userdata_by_userid
+                exact_match and
+                search_id and
+                search_id in self._userdata_by_userid
         ):
             identity = self._userdata_by_userid[search_id]
             ret.append({
@@ -260,12 +261,12 @@ class PoiUsersPlugin(BasePlugin):
         for userid in self._userdata_by_userid:
             if userid:
                 if search_id and not userid.startswith(search_id) \
-                and special_search is None:
+                        and special_search is None:
                     continue
                 identity = self._userdata_by_userid[userid]
                 if special_search is not None:
                     if not identity['Person.LastName'][0].startswith(special_search) \
-                    and not identity['Person.FirstName'][0].startswith(special_search):
+                            and not identity['Person.FirstName'][0].startswith(special_search):
                         continue
                 ret.append({
                     'id': identity['userid'].decode('utf8'),
@@ -300,9 +301,11 @@ class PoiUsersPlugin(BasePlugin):
             return ()
         existing_groups = set(utils.group_ids(self))
 
-        # TODO move this hardcoded group to rights administration plugin (v0.3)
-        existing_groups.update([u'Site Administrators', u'Administrators'])
+        manager = get_saml2rightsManager()
+        existing_groups.update(manager.generally_allowed_groups(request))
+
         valid_groups = existing_groups & set(groupnames)
         return tuple(sorted(valid_groups))
+
 
 InitializeClass(PoiUsersPlugin)

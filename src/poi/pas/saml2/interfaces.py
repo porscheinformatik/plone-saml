@@ -71,3 +71,16 @@ class AbstractSaml2RightsManager(object):
         retrieved from the request
         """
         pass
+
+    def generally_allowed_groups(self, request):
+        """
+        Returns all names of groups that are not managed by the saml2plugin that are generally
+        allowed for users.
+
+        Defaults to [u'Site Administrators', u'Administrators'].
+        Overwrite in your Saml2RightsManager as needed.
+
+        :param request: the current reques
+        :return: a list of group names
+        """
+        return [u'Site Administrators', u'Administrators']
