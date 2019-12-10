@@ -14,7 +14,7 @@ long_description = '\n\n'.join([
 
 setup(
     name='poi.pas.saml2',
-    version='0.3.0',
+    version='0.5.0',
     description="PAS Plugin connecting Partner Net SAML2 with Plone",
     long_description=long_description,
     # Get more from https://pypi.python.org/pypi?%3Aaction=list_classifiers
@@ -38,7 +38,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Plone>=5.0.4',
+        'Plone>=5.2.5',
         'setuptools',
         'pysaml2',
     ],
