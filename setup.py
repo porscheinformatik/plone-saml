@@ -38,7 +38,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
-        'Plone>=5.2.5',
+        'Plone>=5.2.1',
         'setuptools',
         'pysaml2',
     ],
