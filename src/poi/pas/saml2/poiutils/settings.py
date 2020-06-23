@@ -6,12 +6,11 @@ from abc import ABCMeta, abstractmethod
 
 import requests
 from saml2 import samlp
-from utils import xmlsec_path
+from poi.pas.saml2.poiutils.utils import xmlsec_path
+import six
 
 
-class SettingsFactory(object):
-    __metaclass__ = ABCMeta
-
+class SettingsFactory(six.with_metaclass(ABCMeta, object)):
     def prod_IdpSettings(self, request, xmlstr):
         idp_settings_prod = {
             "entityid": self.get_entityid(xmlstr),
@@ -67,8 +66,9 @@ class SettingsFactory(object):
 
     def create_settings_dictionary(self, request):
         encoded_xmlstr = request.form['SAMLResponse']
-        xmlstr = base64.decodestring(encoded_xmlstr)
-
+        encoded_xmlstr = six.ensure_binary(encoded_xmlstr, 'utf-8')
+        xmlstr = base64.decodebytes(encoded_xmlstr)
+        xmlstr = six.ensure_str(xmlstr)
         return self.prod_IdpSettings(request, xmlstr), xmlstr
 
     @abstractmethod

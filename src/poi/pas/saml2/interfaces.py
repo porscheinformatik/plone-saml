@@ -3,6 +3,7 @@
 from zope.interface import Interface
 from zope.publisher.interfaces.browser import IDefaultBrowserLayer
 from abc import ABCMeta, abstractmethod
+import six
 
 
 DEFAULT_ID_USERS = 'poisaml2users'
@@ -31,11 +32,7 @@ class IPoiPasSaml2Layer(IDefaultBrowserLayer):
 class ISaml2RightsManager(Interface):
     """utility marker interface"""
 
-class AbstractSaml2RightsManager(object):
-    __metaclass__ = ABCMeta
-
-
-    # redirection /loginview
+class AbstractSaml2RightsManager(six.with_metaclass(ABCMeta, object)):
     @abstractmethod
     def redirection_url(self, context, saml_data):
         pass

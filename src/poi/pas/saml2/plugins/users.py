@@ -248,7 +248,7 @@ class PoiUsersPlugin(BasePlugin):
         ):
             identity = self._userdata_by_userid[search_id]
             ret.append({
-                'id': identity['userid'].decode('utf8'),
+                'id': utils.decode(identity['userid']),
                 'login': identity['userid'],
                 'pluginid': pluginid
             })
@@ -269,7 +269,7 @@ class PoiUsersPlugin(BasePlugin):
                             and not identity['Person.FirstName'][0].startswith(special_search):
                         continue
                 ret.append({
-                    'id': identity['userid'].decode('utf8'),
+                    'id': utils.decode(identity['userid']),
                     'login': identity['userid'],
                     'pluginid': pluginid
                 })

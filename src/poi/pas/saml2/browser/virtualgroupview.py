@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
+from __future__ import print_function
 from Products.Five import BrowserView
 # from poi.main_dexterities.interfaces import ICountry
 from poi.pas.saml2.interfaces import DEFAULT_ID_USERS
 from plone import api
 from Products.CMFPlone.utils import safe_unicode
 import datetime
-from string import join
 import logging
+from six.moves import range
 
 logger = logging.getLogger("Plone")
 """  --> userdata
@@ -110,7 +111,7 @@ class Saml2GroupView(BrowserView):
         # Show all user of dealer-group
         # ---------------------------------------------------
         elif username != '' and username != '-':
-            print 'Wir Starten mit', username
+            print('Wir Starten mit', username)
             userTable = []
             for zhl in range(1, 10):
                 sid = str(zhl)
@@ -139,7 +140,7 @@ class Saml2GroupView(BrowserView):
                     "')"+'">' + str(userdata["PartnerKey.PartnerNumber"][0]) + '</td><td>' + LastName + '</td><td>' + FirstName + '</td>')
                 table.append('<td>' + str(userdata["userid"]) + '</td><td>' + str(userdata["secret"])  + '</td><td>' +MyRole+ '</td></tr>')
             table.append('</table></div>')
-        return join(table, '\n')
+        return '\n'.join(table)
 
 
     def getroles(self, userdata):
@@ -182,7 +183,7 @@ class Saml2GroupView(BrowserView):
             elif isinstance(inhalt, str):
                 if len(inhalt) > 80: inhalt = inhalt[0:80] + '...'
                 # inhalt = safe_unicode(inhalt)
-                print attr, inhalt
+                print(attr, inhalt)
 
     #---------------------------------------------------
     # Get Country Site
@@ -190,7 +191,7 @@ class Saml2GroupView(BrowserView):
     def getCountry(self,context):
         for item in context.aq_chain:
             # TODO if ICountry.providedBy(item):
-            print "fix ze this one"
+            print("fix ze this one")
             return item,True
         return context,False
 

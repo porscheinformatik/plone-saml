@@ -4,6 +4,7 @@
 from plone import api
 from poi.pas.saml2.interfaces import DEFAULT_ID_USERS
 from Products.Five import BrowserView
+import six
 
 class CurrentUserInspector(BrowserView):
 
@@ -35,7 +36,7 @@ class PurgeUserData(BrowserView):
 
         ret = {}
 
-        for key, value in old.iteritems():
+        for key, value in six.iteritems(old):
             ret[key] = value
 
         return ret
